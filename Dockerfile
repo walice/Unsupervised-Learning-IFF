@@ -20,3 +20,11 @@ RUN chown -R ${NB_UID} ${HOME}
 USER ${NB_USER}
 RUN pip install cvxpy
 RUN pip install altair
+
+# Jupyter Notebook extensions
+RUN pip install jupyter_contrib_nbextensions && \
+    jupyter contrib nbextension install --sys-prefix && \
+    jupyter nbextension enable toc2/main --sys-prefix
+
+# Jupyter Lab extensions
+RUN jupyter labextension install @jupyterlab/toc --clean
