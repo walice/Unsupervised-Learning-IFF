@@ -24,7 +24,14 @@ RUN pip install altair
 # Jupyter Notebook extensions
 RUN pip install jupyter_contrib_nbextensions && \
     jupyter contrib nbextension install --sys-prefix && \
-    jupyter nbextension enable toc2/main --sys-prefix
+    jupyter nbextension enable toc2/main --sys-prefix && \
+    jupyter nbextension enable export_embedded/main --sys-prefix
+
+RUN jupyter nbextensions_configurator enable --sys-prefix && \
+    \
+    pip install --pre rise && \
+    jupyter nbextension install rise --py --sys-prefix && \
+    jupyter nbextension enable rise --py --sys-prefix
 
 # Jupyter Lab extensions
 RUN jupyter labextension install @jupyterlab/toc --clean
