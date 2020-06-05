@@ -19,7 +19,7 @@ RUN chown -R ${NB_UID} ${HOME}
 
 USER ${NB_USER}
 RUN pip install cvxpy
-RUN pip install altair
+RUN pip install altair pyreadr
 
 # Jupyter Notebook extensions
 RUN pip install jupyter_contrib_nbextensions && \
