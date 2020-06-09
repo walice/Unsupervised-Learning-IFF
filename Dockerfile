@@ -18,7 +18,7 @@ RUN chown -R ${NB_UID} ${HOME}
 # add modification code here
 
 USER ${NB_USER}
-RUN pip install altair pyreadr
+RUN pip install altair pyreadr jupyter-server-proxy
 
 # Jupyter Notebook extensions
 RUN pip install jupyter_contrib_nbextensions && \
@@ -34,3 +34,4 @@ RUN jupyter nbextensions_configurator enable --sys-prefix && \
 
 # Jupyter Lab extensions
 RUN jupyter labextension install @jupyterlab/toc --clean
+RUN jupyter labextension install @jupyterlab/server-proxy
