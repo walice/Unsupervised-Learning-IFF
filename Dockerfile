@@ -18,7 +18,6 @@ RUN chown -R ${NB_UID} ${HOME}
 # add modification code here
 
 USER ${NB_USER}
-RUN pip install cvxpy
 RUN pip install altair pyreadr
 
 # Jupyter Notebook extensions
