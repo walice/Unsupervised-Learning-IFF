@@ -18,7 +18,7 @@ RUN chown -R ${NB_UID} ${HOME}
 # add modification code here
 
 USER ${NB_USER}
-RUN pip install altair pyreadr jupyter-server-proxy
+RUN pip install altair pyreadr jupyter-server-proxy altair_data_server joypy
 
 # Jupyter Notebook extensions
 RUN pip install jupyter_contrib_nbextensions && \
@@ -35,3 +35,7 @@ RUN jupyter nbextensions_configurator enable --sys-prefix && \
 # Jupyter Lab extensions
 RUN jupyter labextension install @jupyterlab/toc --clean
 RUN jupyter labextension install @jupyterlab/server-proxy
+
+# Network analysis and visualization
+RUN conda install -c conda-forge cartopy
+RUN pip install --force-reinstall networkx==2.3
