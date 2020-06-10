@@ -1,6 +1,6 @@
 FROM jupyter/scipy-notebook:dc57157d6316
 
-# start binder compatibility
+# START binder compatibility
 # from https://mybinder.readthedocs.io/en/latest/tutorials/dockerfile.html
 
 ARG NB_USER
@@ -13,12 +13,14 @@ COPY . ${HOME}/work
 USER root
 RUN chown -R ${NB_UID} ${HOME}
 
-# end binder compatibility code
+# END binder compatibility code
 
-# add modification code here
+# Add modification code below
 
 USER ${NB_USER}
-RUN pip install altair pyreadr jupyter-server-proxy altair_data_server joypy
+RUN pip install altair pyreadr joypy networkx wbdata
+# Extensions to try to get altair to render without running notebook
+# jupyter-server-proxy altair_data_server
 
 # Jupyter Notebook extensions
 RUN pip install jupyter_contrib_nbextensions && \
@@ -34,8 +36,7 @@ RUN jupyter nbextensions_configurator enable --sys-prefix && \
 
 # Jupyter Lab extensions
 RUN jupyter labextension install @jupyterlab/toc --clean
-RUN jupyter labextension install @jupyterlab/server-proxy
+# RUN jupyter labextension install @jupyterlab/server-proxy
 
-# Network analysis and visualization
+# Geospatial extensions
 RUN conda install -c conda-forge cartopy
-RUN pip install --force-reinstall networkx==2.3
