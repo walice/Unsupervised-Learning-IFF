@@ -4,7 +4,7 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile
-    image: reproducibility-demo:${TAG:-latest}
+    image: notebook-IFF:${TAG:-latest}
     volumes:
       - ${HOST_DIR}:/home/jovyan/work
       - ${CERT_DIR}:/etc/ssl/notebook
