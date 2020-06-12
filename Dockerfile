@@ -18,25 +18,35 @@ RUN chown -R ${NB_UID} ${HOME}
 # Add modification code below
 
 USER ${NB_USER}
-RUN pip install altair pyreadr joypy networkx wbdata
-# Extensions to try to get altair to render without running notebook
-# jupyter-server-proxy altair_data_server
 
 # Jupyter Notebook extensions
-RUN pip install jupyter_contrib_nbextensions && \
+RUN \
+    pip install jupyter_contrib_nbextensions && \
     jupyter contrib nbextension install --sys-prefix && \
+    \
     jupyter nbextension enable toc2/main --sys-prefix && \
     jupyter nbextension enable export_embedded/main --sys-prefix
 
-RUN jupyter nbextensions_configurator enable --sys-prefix && \
+RUN \
+    jupyter nbextensions_configurator enable --sys-prefix && \
     \
     pip install --pre rise && \
     jupyter nbextension install rise --py --sys-prefix && \
-    jupyter nbextension enable rise --py --sys-prefix
-
+    jupyter nbextension enable rise --py --sys-prefix && \
+    \
+    pip install nbzip && \
+    jupyter serverextension enable nbzip --py --sys-prefix && \
+    jupyter nbextension install nbzip --py --sys-prefix && \
+    jupyter nbextension enable nbzip --py --sys-prefix
+    
 # Jupyter Lab extensions
 RUN jupyter labextension install @jupyterlab/toc --clean
 # RUN jupyter labextension install @jupyterlab/server-proxy
+    
+# Packages
+RUN pip install altair pyreadr joypy networkx wbdata
+# Extensions to try to get altair to render without running notebook
+# jupyter-server-proxy altair_data_server
 
 # Geospatial extensions
 RUN conda install -c conda-forge cartopy
