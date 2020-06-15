@@ -2,39 +2,28 @@
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/walice/Unsupervised-Learning-IFF/master)
 
-## Binder
+## Docker container on VM
 
-### Creating Binder Badge
+Credit to [@syoh](https://github.com/syoh) for setting up the initial Docker image and for help setting up the computational environment. See the GitHub repo :octocat: <https://github.com/dddlab/reproducibility-demo/tree/prep-for-binder> for a demo on spinning up Docker containers that work with [Binder](https://mybinder.org).
 
-Created on [Binder](https://mybinder.org):
-* GitHub: `https://github.com/dddlab/reproducibility-demo`
-* Git branch, tag, or commit: `prep-for-binder`
-* (Optional) Path to a notebook file: `work/nonneg_matrix_fact.ipynb`
+* Start a Jupyter Notebook environment with `docker-compose.yml`
+* The Docker image will be created from `Dockerfile` and includes the necessary packages to run Jupyter Book
+* `setup.sh` will download a utility to create a password and encryption keys for your Jupyter notebook
 
-### Pushing back to GitHub
 
-* The cloned repository on Binder will say `master` branch
-* In order to push back to `prep-for-binder` branch, checkout the branch first:  
-`git checkout prep-for-binder`
+## Goals of the project
 
-## Starting Jupyter Notebook on VM
+This project works with the latest trade mis-invoicing estimates of the United Nations Economic Commission for Africa: Lépissier, Alice, Davis, William, & Ibrahim, Gamal. (2019). Trade Mis-Invoicing Dataset (Version 1). <a href="https://doi.org/10.5281/zenodo.3610558"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3610558.svg" alt="DOI"></a>
 
-* Jupyter Notebook environment is started with `docker-compose.yml`
-* Docker image will be created from `Dockerfile` if necessary
-* `setup.sh` will download a utility to create a password an encryption keys for your Jupyter notebook
+While generating estimates of the dollar value of illicit trade has been helpful to shed light on the severity of the problem, the next step in the analysis is to further understand the nature of the illicit activity in terms of its origins, destinations, and sectors.
 
-```bash
-# install necessary packages on debian or ubuntu
-sudo apt-get update && \
-  sudo apt-get install -y wget git docker.io docker-compose && \
-  sudo usermod -aG docker $USER
+Therefore, the goal of this project is to extract meaningful insights on illicit trade using unsupervised machine learning techniques. By doing so, I can identify analytically relevant categories and dimensions of variation, in order to generate hypotheses and guide further work.
 
-# re-login to to apply docker group setting
+This project will apply the following techniques to the data:
+1. Dimension reduction using Principal Components Analysis (PCA)
+2. Clustering
+3. Graph analysis
 
-git clone https://github.com/dddlab/reproducibility-demo.git
-cd reproducibility-demo/
-git checkout prep-for-binder
-chmod u+x setup.sh
-./setup.sh 
-docker-compose up --build -d
-```
+
+## Jupyter Book
+A Jupyter Book write-up of this project is available at <https://alicelepissier.com/jupyter-book-IFF/>.
