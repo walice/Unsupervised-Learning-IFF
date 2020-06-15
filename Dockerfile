@@ -44,7 +44,7 @@ RUN jupyter labextension install @jupyterlab/toc --clean
 # RUN jupyter labextension install @jupyterlab/server-proxy
     
 # Packages
-RUN pip install altair pyreadr joypy networkx wbdata
+RUN pip install altair joypy networkx wbdata imageio
 # Extensions to try to get altair to render without running notebook
 # jupyter-server-proxy altair_data_server
 
