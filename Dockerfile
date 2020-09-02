@@ -40,7 +40,7 @@ RUN \
     jupyter nbextension enable nbzip --py --sys-prefix
     
 # Jupyter Lab extensions
-RUN jupyter labextension install @jupyterlab/toc --clean
+# RUN jupyter labextension install @jupyterlab/toc --clean
 # RUN jupyter labextension install @jupyterlab/server-proxy
     
 # Packages
